@@ -39,5 +39,5 @@ log.showSignature::
 	linkgit:git-whatchanged[1] assume `--show-signature`.
 
 log.mailmap::
-	If true, makes linkgit:git-log[1], linkgit:git-show[1], and
-	linkgit:git-whatchanged[1] assume `--use-mailmap`.
+	If false, makes linkgit:git-log[1], linkgit:git-show[1], and
+	linkgit:git-whatchanged[1] assume `--no-use-mailmap`.

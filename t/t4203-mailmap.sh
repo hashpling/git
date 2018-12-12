@@ -424,6 +424,24 @@ EOF
 
 test_expect_success 'Log output with --use-mailmap' '
 	git log --use-mailmap | grep Author >actual &&
+	test_cmp expect actual &&
+# --use-mailmap is the default
+	git log | grep Author >actual &&
+	test_cmp expect actual
+'
+
+cat >expect <<\EOF
+Author: CTO <cto@coompany.xx>
+Author: claus <me@company.xx>
+Author: santa <me@company.xx>
+Author: nick2 <nick2@company.xx>
+Author: nick2 <bugs@company.xx>
+Author: nick1 <bugs@company.xx>
+Author: A U Thor <author@example.com>
+EOF
+
+test_expect_success 'Log output with --no-use-mailmap' '
+	git log --no-use-mailmap | grep Author >actual &&
 	test_cmp expect actual
 '
 
