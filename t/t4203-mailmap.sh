@@ -383,6 +383,34 @@ test_expect_success 'Shortlog output (complex mapping)' '
 
 '
 
+test_expect_success 'Shortlog output (complex mapping, filtered)' '
+
+	printf "     1\tA U Thor <author@example.com>\n" >expect &&
+
+	git shortlog -es --author="A U Thor" HEAD >actual &&
+	test_cmp expect actual &&
+
+	printf "     1\tCTO <cto@company.xx>\n" >expect &&
+
+	git shortlog -es --author=CTO HEAD >actual &&
+	test_cmp expect actual &&
+
+	printf "     2\tOther Author <other@author.xx>\n" >expect &&
+
+	git shortlog -es --author="Other Author" HEAD >actual &&
+	test_cmp expect actual &&
+
+	printf "     2\tSanta Claus <santa.claus@northpole.xx>\n" >expect &&
+
+	git shortlog -es --author="Santa Claus" HEAD >actual &&
+	test_cmp expect actual &&
+
+	printf "     1\tSome Dude <some@dude.xx>\n" >expect &&
+
+	git shortlog -es --author="Some Dude" HEAD >actual &&
+	test_cmp expect actual
+'
+
 # git log with --pretty format which uses the name and email mailmap placemarkers
 cat >expect <<\EOF
 Author CTO <cto@coompany.xx> maps to CTO <cto@company.xx>
